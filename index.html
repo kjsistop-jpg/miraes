@@ -12,10 +12,8 @@
 <meta name="theme-color" content="#0b2236">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/serif-600.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="assets/fonts/sans-400.woff" as="font" type="font/woff" crossorigin>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -35,6 +33,11 @@
 }
 </script>
 <style>
+@font-face{font-family:"Mirae Serif";src:url(assets/fonts/serif-600.woff) format("woff");font-weight:600 700;font-display:swap}
+@font-face{font-family:"Mirae Serif";src:url(assets/fonts/serif-500.woff) format("woff");font-weight:400 500;font-display:swap}
+@font-face{font-family:"Mirae Sans";src:url(assets/fonts/sans-400.woff) format("woff");font-weight:400;font-display:swap}
+@font-face{font-family:"Mirae Sans";src:url(assets/fonts/sans-500.woff) format("woff");font-weight:500 600;font-display:swap}
+@font-face{font-family:"Mirae Sans";src:url(assets/fonts/sans-700.woff) format("woff");font-weight:700 900;font-display:swap}
 :root{
   --ink:#0b2236; --ink-deep:#071827; --ink-soft:#12324d;
   --blue:#0a68a0; --green:#3e9b4b; --green-deep:#1f7a3a; --mint:#9be0a8;
@@ -43,8 +46,8 @@
   --gutter:max(var(--pad),calc((100vw - 1240px)/2));
   --head:76px;
   --ease:cubic-bezier(.2,.7,.2,1);
-  --display:"Noto Serif KR","Nanum Myeongjo","Batang",serif;
-  --text:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --display:"Mirae Serif","Noto Serif KR","Nanum Myeongjo",serif;
+  --text:"Mirae Sans","Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:calc(var(--head) + 8px);-webkit-text-size-adjust:100%}
@@ -73,7 +76,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .band{padding:clamp(76px,10vw,150px) var(--gutter)}
 .split{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(32px,6vw,96px);align-items:start}
 .split > header{position:sticky;top:calc(var(--head) + 36px)}
-h2{font-family:var(--display);font-weight:600;font-size:clamp(1.75rem,3.1vw,2.7rem);line-height:1.3;letter-spacing:-.03em}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(1.8rem,3.1vw,2.7rem);line-height:1.32;letter-spacing:-.035em}
 h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;background:linear-gradient(90deg,var(--blue) 50%,var(--green) 50%);transform-origin:left}
 .band-note{margin-top:20px;color:var(--mute);max-width:22em}
 .on-dark{background:var(--ink);color:#fff}
@@ -150,14 +153,14 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 .hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 
 .stage{position:relative;overflow:hidden;background:#1a3348}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease}
-.slide.on{opacity:1}
-.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.14)}
-.slide.on img{animation:kb 8s ease-out forwards}
-@keyframes kb{from{transform:scale(1.14)}to{transform:scale(1)}}
-.stage::before{content:"";position:absolute;inset:0 auto 0 0;width:24%;z-index:1;background:linear-gradient(90deg,var(--ink),transparent)}
-.stage::after{content:"";position:absolute;inset:auto 0 0 0;height:34%;z-index:1;background:linear-gradient(0deg,rgba(7,24,39,.72),transparent)}
-.stage-ui{position:absolute;z-index:2;left:clamp(20px,3vw,40px);right:clamp(20px,3vw,40px);bottom:clamp(18px,2.6vw,32px);display:flex;align-items:center;gap:18px}
+.slide{position:absolute;inset:0;z-index:0;opacity:0;transition:opacity 1.8s ease-in-out}
+.slide.prev{z-index:1;opacity:1;transition:none}
+.slide.on{z-index:2;opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.1);transition:transform 0s linear 2.2s;will-change:transform,opacity;backface-visibility:hidden}
+.stage.ready .slide.on img,.stage.ready .slide.prev img{transform:scale(1);transition:transform 10s cubic-bezier(.25,.6,.3,1)}
+.stage::before{content:"";position:absolute;inset:0 auto 0 0;width:24%;z-index:3;background:linear-gradient(90deg,var(--ink),transparent)}
+.stage::after{content:"";position:absolute;inset:auto 0 0 0;height:34%;z-index:3;background:linear-gradient(0deg,rgba(7,24,39,.72),transparent)}
+.stage-ui{position:absolute;z-index:4;left:clamp(20px,3vw,40px);right:clamp(20px,3vw,40px);bottom:clamp(18px,2.6vw,32px);display:flex;align-items:center;gap:18px}
 .count{font-family:var(--display);font-weight:600;font-size:1.05rem;letter-spacing:.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
 .count small{font-size:.8em;color:rgba(255,255,255,.6);font-weight:500}
 .bars{display:flex;gap:8px;flex:1}
@@ -187,15 +190,14 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 .ticker li::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:14px}
 @keyframes slide{to{transform:translateX(-50%)}}
 
-/* ── 숫자 ── */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);padding:clamp(56px,7vw,104px) var(--gutter)}
-.stats > div{padding:6px clamp(16px,3vw,44px)}
-.stats > div:first-child{padding-left:0}
-.stats > div + div{border-left:1px solid var(--rule)}
-.stats b{display:block;font-family:var(--display);font-weight:600;font-size:clamp(2.8rem,6.6vw,5.6rem);line-height:1.05;letter-spacing:-.04em;font-variant-numeric:tabular-nums lining-nums}
-.stats b small{font-size:.32em;font-weight:600;letter-spacing:-.02em;margin-left:.2em}
-.stats strong{display:block;margin-top:16px;font-weight:700;font-size:1.06rem}
-.stats div > span{display:block;margin-top:2px;font-size:.94rem;color:var(--mute)}
+/* ── 신뢰 항목 ── */
+.creds{display:grid;grid-template-columns:repeat(4,1fr);padding:clamp(40px,5vw,68px) var(--gutter);border-bottom:1px solid var(--rule)}
+.creds > div{position:relative;padding:4px clamp(14px,2.2vw,32px)}
+.creds > div:first-child{padding-left:0}
+.creds > div + div{border-left:1px solid var(--rule)}
+.creds svg{display:block;width:26px;height:26px;margin-bottom:16px;color:var(--green-deep)}
+.creds b{display:block;font-family:var(--display);font-weight:600;font-size:clamp(1.1rem,1.5vw,1.3rem);line-height:1.4;letter-spacing:-.03em}
+.creds span{display:block;margin-top:4px;font-size:.93rem;color:var(--mute)}
 
 /* ── 주요 업무 ── */
 .works li{position:relative;padding:26px 0 26px 38px;border-bottom:1px solid rgba(255,255,255,.14);cursor:pointer;outline-offset:-2px}
@@ -240,8 +242,8 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 /* ── 대표 인사말 ── */
 .greet{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:start}
 .portrait{position:sticky;top:calc(var(--head) + 36px)}
-.portrait .frame{overflow:hidden;aspect-ratio:4/5;background:#dbe3e8}
-.portrait img{width:100%;height:112%;max-width:none;object-fit:cover;object-position:50% 20%;will-change:transform}
+.portrait .frame{overflow:hidden;aspect-ratio:4/5;background:#fff;box-shadow:0 30px 60px -40px rgba(11,34,54,.55)}
+.portrait img{width:100%;height:108%;max-width:none;object-fit:cover;object-position:50% 0;will-change:transform}
 .plate{position:relative;z-index:1;width:86%;margin:-46px 0 0 auto;background:var(--ink);color:#fff;padding:20px 24px}
 .plate b{display:block;font-family:var(--display);font-weight:600;font-size:1.5rem;line-height:1.3}
 .plate span{display:block;font-size:.92rem;color:#a9bccb}
@@ -308,9 +310,10 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
   .hero h1{font-size:min(6.2vw,1.75rem)}
   .chip img{height:32px}
   .hero .cta .btn{flex:1 1 100%}
-  .stats{grid-template-columns:1fr}
-  .stats > div,.stats > div:first-child{padding:26px 0}
-  .stats > div + div{border-left:0;border-top:1px solid var(--rule)}
+  .creds{grid-template-columns:1fr 1fr;row-gap:28px}
+  .creds > div,.creds > div:first-child{padding:0 14px 0 0}
+  .creds > div + div{border-left:0}
+  .creds svg{width:22px;height:22px;margin-bottom:10px}
   .arrows{display:none}
   .record .cols{grid-template-columns:1fr}
   .contact dl div{grid-template-columns:1fr;gap:2px}
@@ -327,7 +330,7 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
   .hero .intro-item,.hero .ln > span{opacity:1;transform:none}
   .js .rv,.js .record li{opacity:1;transform:none}
   .js .wipe{clip-path:none}
-  .slide img{transform:none}
+  .slide img,.stage.ready .slide img{transform:none}
   .bars button.on::after{transform:scaleX(1)}
 }
 </style>
@@ -406,10 +409,11 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
     </ul>
   </div>
 
-  <section class="stats" aria-label="핵심 요약">
-    <div class="rv"><b><span data-count="15">15</span><small>년</small></b><strong>공사감독 경력</strong><span>한국농어촌공사 근무, 다양한 건설현장 경험</span></div>
-    <div class="rv" style="--d:.12s"><b><span data-count="6">6</span><small>종</small></b><strong>보유 자격</strong><span>산업안전지도사(건설), 농어업토목기술사 외</span></div>
-    <div class="rv" style="--d:.24s"><b><span data-count="4">4</span><small>곳</small></b><strong>현직 위원·자문·회원</strong><span>전북도청, LH, 건설기술인협회 외</span></div>
+  <section class="creds" aria-label="핵심 요약">
+    <div class="rv"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="13" r="11.2"/><path d="M8 13.4l3.4 3.4L18.200 9.800"/></svg><b>고용노동부 지정</b><span>재해예방기술지도 전문기관</span></div>
+    <div class="rv" style="--d:.1s"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="13" r="11.2"/><path d="M8 13.4l3.4 3.4L18.200 9.800"/></svg><b>산업안전지도사(건설)</b><span>농어업토목기술사 보유</span></div>
+    <div class="rv" style="--d:.2s"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="13" r="11.2"/><path d="M8 13.4l3.4 3.4L18.200 9.800"/></svg><b>공사감독 15년</b><span>한국농어촌공사 근무</span></div>
+    <div class="rv" style="--d:.3s"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="13" r="11.2"/><path d="M8 13.4l3.4 3.4L18.200 9.800"/></svg><b>전북도청 기술심의위원</b><span>안전관리 분야, 현직</span></div>
   </section>
 
   <section class="band on-dark" id="services">
@@ -453,7 +457,7 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
   <section class="band on-paper" id="greeting">
     <div class="greet">
       <div class="portrait">
-        <div class="frame wipe"><img id="plx" src="assets/ceo-field.jpg" alt="안전모와 조끼를 착용한 미래안전기술원 대표 김진선"></div>
+        <div class="frame wipe"><img id="plx" src="assets/ceo.jpg" alt="미래안전기술원 대표 김진선"></div>
         <div class="plate rv" style="--d:.4s"><b>김진선</b><span>대표, 산업안전지도사(건설)·기술사</span></div>
       </div>
       <article class="letter">
@@ -567,7 +571,7 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
     prog.style.transform='scaleX('+(max>0?Math.min(1,y/max):0)+')';
     if(plx&&!reduce){
       var r=plx.parentNode.getBoundingClientRect(),vh=window.innerHeight;
-      if(r.bottom>0&&r.top<vh){var t=Math.max(-1,Math.min(1,(r.top+r.height/2-vh/2)/vh));plx.style.transform='translateY('+(-5.3-t*5)+'%)'}
+      if(r.bottom>0&&r.top<vh){var t=Math.max(-1,Math.min(1,(r.top+r.height/2-vh/2)/vh));plx.style.transform='translateY('+(-3.7-t*3.5)+'%)'}
     }
   }
   window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(frame)}},{passive:true});
@@ -581,24 +585,17 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
     targets.forEach(function(t){io.observe(t)});
   }else{targets.forEach(function(t){t.classList.add('in')})}
 
-  /* 숫자 올라가기 */
-  function run(el){
-    var end=+el.getAttribute('data-count');
-    if(reduce){el.textContent=end;return}
-    var t0=null,dur=1400;
-    function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/dur);el.textContent=Math.round(end*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)}
-    el.textContent='0';requestAnimationFrame(step);
-  }
-  if('IntersectionObserver' in window){
-    var no=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){run(e.target);no.unobserve(e.target)}})},{threshold:.6});
-    $$('[data-count]').forEach(function(n){no.observe(n)});
-  }
-
   /* 첫 화면 사진 넘김 */
   var slides=$$('.slide'),bars=$$('#bars button'),cur=$('#cur'),idx=0,timer=null,DUR=6000;
+  var stage=$('#stage'),prevTimer=null;
+  slides.forEach(function(s){var im=$('img',s);if(im&&im.decode)im.decode().catch(function(){})});
+  requestAnimationFrame(function(){requestAnimationFrame(function(){stage.classList.add('ready')})});
   function show(n){
-    idx=(n+slides.length)%slides.length;
-    slides.forEach(function(s,i){s.classList.toggle('on',i===idx)});
+    var from=idx;idx=(n+slides.length)%slides.length;
+    if(from===idx)return;
+    clearTimeout(prevTimer);
+    slides.forEach(function(s,i){s.classList.toggle('prev',i===from);s.classList.toggle('on',i===idx)});
+    prevTimer=setTimeout(function(){slides[from].classList.remove('prev')},2000);
     bars.forEach(function(b,i){b.classList.remove('on');b.classList.toggle('done',i<idx)});
     void bars[idx].offsetWidth;bars[idx].classList.add('on');
     cur.textContent='0'+(idx+1);
