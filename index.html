@@ -62,8 +62,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* ── 시작 화면 ── */
 .intro{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--ink);pointer-events:none;animation:introOut .8s var(--ease) 1.25s forwards}
-.intro .tile{background:#fff;padding:22px 26px;border-radius:2px;opacity:0;transform:scale(.86);animation:introMark .9s var(--ease) .1s forwards}
-.intro img{width:92px}
+.intro .tile{padding:22px 26px;opacity:0;transform:scale(.86);animation:introMark .9s var(--ease) .1s forwards}
+.intro img{width:104px;filter:drop-shadow(0 0 18px rgba(155,224,168,.18))}
 .intro::after{content:"";position:absolute;left:50%;top:calc(50% + 78px);width:120px;height:2px;margin-left:-60px;background:linear-gradient(90deg,var(--blue) 50%,var(--green) 50%);transform:scaleX(0);transform-origin:left;animation:introLine .9s var(--ease) .35s forwards}
 @keyframes introMark{to{opacity:1;transform:none}}
 @keyframes introLine{to{transform:scaleX(1)}}
@@ -379,7 +379,7 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 <body>
 <script>document.documentElement.classList.add('js')</script>
 
-<div class="intro" aria-hidden="true"><div class="tile"><img src="assets/logo-mark.png" alt=""></div></div>
+<div class="intro" aria-hidden="true"><div class="tile"><img src="assets/logo-mark-solid.png" alt=""></div></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <header class="top" id="topbar">
