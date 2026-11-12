@@ -404,8 +404,8 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 
   <div class="ticker" aria-hidden="true">
     <ul>
-      <li>재해예방기술지도(건설)</li><li>안전보건대장 작성 및 적정성 확인</li><li>안전보건조정자</li><li>안전컨설팅</li><li>안전관리계획서</li><li>유해위험방지계획서</li><li>설계안전성검토</li>
-      <li>재해예방기술지도(건설)</li><li>안전보건대장 작성 및 적정성 확인</li><li>안전보건조정자</li><li>안전컨설팅</li><li>안전관리계획서</li><li>유해위험방지계획서</li><li>설계안전성검토</li>
+      <li>재해예방기술지도(건설)</li><li>안전보건대장 작성·적정성 확인·이행점검</li><li>안전보건조정자</li><li>안전컨설팅</li><li>안전관리계획서</li><li>유해위험방지계획서</li><li>설계안전성검토</li>
+      <li>재해예방기술지도(건설)</li><li>안전보건대장 작성·적정성 확인·이행점검</li><li>안전보건조정자</li><li>안전컨설팅</li><li>안전관리계획서</li><li>유해위험방지계획서</li><li>설계안전성검토</li>
     </ul>
   </div>
 
@@ -426,9 +426,9 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
           <h3>재해예방기술지도(건설)</h3>
           <p>소규모 건설현장의 재해 예방을 위해 체계적인 기술지도를 제공합니다.</p>
         </li>
-        <li tabindex="0"><h3>안전보건대장 작성 및 적정성 확인</h3></li>
+        <li tabindex="0"><h3>(기본·설계·공사) 안전보건대장 작성 및 적정성 확인, 이행점검</h3></li>
         <li tabindex="0"><h3>안전보건조정자</h3></li>
-        <li tabindex="0"><h3>안전컨설팅<small>(위험성평가, 사업장)</small></h3></li>
+        <li tabindex="0"><h3>안전컨설팅<small>(위험성평가, 사업장)</small></h3><p>컨설팅 비용은 산업안전보건관리비 사용기준 제4호 '안전보건진단비'로 사용할 수 있습니다.</p></li>
         <li tabindex="0"><h3>안전관리계획서 / 유해위험방지계획서 작성</h3></li>
         <li tabindex="0"><h3>설계안전성검토 등</h3></li>
       </ul>
@@ -581,8 +581,10 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
   $$('.record').forEach(function(rec){$$('li',rec).forEach(function(li,i){li.style.setProperty('--i',i)})});
   var targets=$$('.rv,.wipe,.record');
   if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -6% 0px'});
-    targets.forEach(function(t){io.observe(t)});
+    /* clip-path로 가려진 요소는 일부 브라우저에서 교차 감지가 안 되므로 부모를 대신 관찰 */
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var t=e.target._rv||e.target;t.classList.add('in');io.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+    targets.forEach(function(t){if(t.classList.contains('wipe')){t.parentNode._rv=t;io.observe(t.parentNode)}else io.observe(t)});
+    setTimeout(function(){$$('.wipe').forEach(function(w){var r=w.parentNode.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)w.classList.add('in')})},2500);
   }else{targets.forEach(function(t){t.classList.add('in')})}
 
   /* 첫 화면 사진 넘김 */
