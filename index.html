@@ -244,6 +244,15 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 .lb.open img{transform:none}
 .lb p{font-weight:500}
 .lb button{position:absolute;right:18px;top:18px;width:50px;height:50px;border:1px solid rgba(255,255,255,.5);border-radius:50%;font-size:1.5rem;line-height:1}
+.lb .lb-nav{top:50%;right:auto;width:52px;height:52px;margin-top:-26px;display:grid;place-items:center;background:rgba(7,24,39,.35);transition:background .25s}
+.lb .lb-nav:hover{background:rgba(255,255,255,.14)}
+.lb .lb-nav svg{width:22px;height:22px}
+.lb .lb-prev{left:18px}.lb .lb-next{left:auto;right:18px}
+.lb-num{font-size:.85rem;color:#a9bccb;letter-spacing:.06em}
+.lb.single .lb-nav,.lb.single .lb-num{display:none}
+.lb img{touch-action:pan-y;user-select:none;-webkit-user-drag:none}
+@media (max-width:640px){.lb .lb-nav{top:auto;bottom:22px;margin-top:0;width:48px;height:48px}.lb .lb-prev{left:22px}.lb .lb-next{right:22px}}
+
 
 /* ── 대표 인사말 ── */
 .greet{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:start}
@@ -679,6 +688,9 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
   <button id="lbClose" aria-label="닫기">×</button>
   <img id="lbImg" alt="">
   <p id="lbCap"></p>
+  <span id="lbNum" class="lb-num"></span>
+  <button id="lbPrev" class="lb-nav lb-prev" aria-label="이전 사진"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button id="lbNext" class="lb-nav lb-next" aria-label="다음 사진"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
 </div>
 
 <script>
@@ -758,16 +770,31 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
   window.addEventListener('pointerup',function(){if(!down)return;down=false;setTimeout(function(){rail.classList.remove('dragging')},0)});
 
   /* 사진 크게 보기 */
-  var lb=$('#lb'),lbImg=$('#lbImg'),lbCap=$('#lbCap'),lbClose=$('#lbClose'),last=null;
-  function openLb(btn){
-    var im=$('img',btn),cap=$('figcaption',btn.parentNode)||$('h3',btn.parentNode);
-    lbImg.src=im.currentSrc||im.src;lbImg.alt=im.alt;lbCap.textContent=cap?cap.textContent:'';
-    last=btn;lb.classList.add('open');doc.body.classList.add('lock');lbClose.focus();
+  var lb=$('#lb'),lbImg=$('#lbImg'),lbCap=$('#lbCap'),lbClose=$('#lbClose'),lbNum=$('#lbNum'),last=null,group=[],gi=0;
+  function capOf(btn){var c=$('figcaption',btn.parentNode)||$('h3',btn.parentNode);if(!c)return '';var b=$('b',c);return b?b.textContent:c.textContent}
+  function showAt(i){
+    gi=(i+group.length)%group.length;var btn=group[gi],im=$('img',btn);
+    lbImg.src=im.currentSrc||im.src;lbImg.alt=im.alt;lbCap.textContent=capOf(btn);
+    lbNum.textContent=(gi+1)+' / '+group.length;
+  }
+  function openLb(btn,list){
+    group=list;last=btn;lb.classList.toggle('single',list.length<2);showAt(list.indexOf(btn));
+    lb.classList.add('open');doc.body.classList.add('lock');lbClose.focus();
   }
   function closeLb(){lb.classList.remove('open');doc.body.classList.remove('lock');if(last)last.focus()}
-  $$('.rail .frame').forEach(function(b){b.addEventListener('click',function(){if(moved>6)return;openLb(b)})});
-  $$('.acts .frame,.docs .frame').forEach(function(b){b.addEventListener('click',function(){openLb(b)})});
-  lb.addEventListener('click',function(e){if(e.target!==lbImg)closeLb()});
+  [['.rail .frame',true],['.acts .frame',false],['.docs .frame',false]].forEach(function(g){
+    var list=$$(g[0]);
+    list.forEach(function(b){b.addEventListener('click',function(){if(g[1]&&moved>6)return;openLb(b,list)})});
+  });
+  $('#lbPrev').addEventListener('click',function(e){e.stopPropagation();showAt(gi-1)});
+  $('#lbNext').addEventListener('click',function(e){e.stopPropagation();showAt(gi+1)});
+  var tx=null,ty=0;
+  lb.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
+  lb.addEventListener('touchend',function(e){if(tx===null)return;var dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;tx=null;
+    if(group.length>1&&Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){lb._sw=true;showAt(gi+(dx<0?1:-1));setTimeout(function(){lb._sw=false},350)}});
+  lb.addEventListener('click',function(e){if(lb._sw)return;if(e.target===lb||e.target===lbCap||e.target===lbNum)closeLb()});
+  lbClose.addEventListener('click',closeLb);
+  doc.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='ArrowLeft')showAt(gi-1);else if(e.key==='ArrowRight')showAt(gi+1)});
 
   /* 휴대폰 메뉴 */
   var burger=$('#burger'),mnav=$('#mnav');
