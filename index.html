@@ -294,13 +294,17 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
   .burger{display:block}
   .split,.greet{grid-template-columns:1fr}
   .split > header,.portrait{position:static}
-  .portrait{max-width:520px}
+  .portrait{max-width:340px}
   .hero{grid-template-columns:1fr;min-height:0}
   .stage{order:-1;aspect-ratio:4/3.1}
   .stage::before{display:none}
   .hero h1{font-size:clamp(1.5rem,4.4vw,2.4rem)}
 }
 @media (max-width:640px){
+  .portrait{max-width:250px}
+  .plate{width:auto;margin:-34px -28px 0 28px;padding:14px 18px}
+  .plate b{font-size:1.2rem}
+  .plate span{font-size:.8rem}
   :root{--head:64px}
   body{font-size:16px}
   .brand img{height:36px}
