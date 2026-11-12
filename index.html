@@ -215,6 +215,8 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 
 /* ── 현장 활동 ── */
 .field{padding:clamp(76px,10vw,150px) 0;overflow:hidden}
+.field + .trust{padding-top:0}
+.field + .trust .trust-head{padding-top:clamp(56px,7vw,96px);border-top:1px solid var(--rule)}
 .field-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding:0 var(--gutter);margin-bottom:clamp(32px,4.4vw,60px)}
 .arrows{display:flex;gap:10px}
 .arrows button{width:54px;height:54px;border:1px solid var(--ink);border-radius:50%;display:grid;place-items:center;transition:background .3s,color .3s,opacity .3s}
@@ -365,6 +367,10 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
   .record .cols{grid-template-columns:1fr}
   .contact dl div{grid-template-columns:1fr;gap:2px}
   .foot{padding-bottom:104px}
+  .hero .cta{display:none}
+  .hero-copy{padding-bottom:40px}
+  .creds b{font-size:1.04rem}
+  .creds span{font-size:.86rem}
   .dock{display:grid;grid-template-columns:1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:90;background:#fff;border-top:1px solid var(--rule);padding-bottom:env(safe-area-inset-bottom)}
   .dock a{display:flex;justify-content:center;align-items:center;gap:8px;min-height:56px;font-weight:700}
   .dock a:first-child{background:var(--green-deep);color:#fff}
@@ -636,7 +642,6 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
       <header>
         <h2 class="rv">문의 및<br>오시는 길</h2>
         <p class="band-note rv" style="--d:.1s">현장의 목소리에 귀 기울이겠습니다. 전화 또는 이메일로 편하게 문의해 주세요.</p>
-        <div class="mark-tile rv" style="--d:.2s"><img src="assets/logo-full.png" alt="미래안전기술원 로고"></div>
       </header>
       <div class="rv" style="--d:.15s">
         <span class="tel-label">전화 상담</span>
