@@ -8,7 +8,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="미래안전기술원 | 재해예방기술지도 전문기관">
 <meta property="og:description" content="현장의 목소리에 귀 기울이며 맞춤형 안전 솔루션을 제공하는 든든한 동반자. 전북.">
-<meta property="og:image" content="assets/hero-1.jpg">
+<meta property="og:image" content="assets/hero-site.jpg">
 <meta name="theme-color" content="#0b2236">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
@@ -289,6 +289,21 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 
 .dock{display:none}
 
+/* 기술지도 진행 과정 */
+.process{background:var(--paper)}
+.process-head{max-width:1200px;margin:0 auto clamp(36px,5vw,64px)}
+.steps{list-style:none;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
+.steps li{background:#fff;display:flex;flex-direction:column}
+.steps .ph{aspect-ratio:4/3;overflow:hidden;background:var(--ink-soft)}
+.steps .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.steps li:hover .ph img{transform:scale(1.04)}
+.steps .tx{padding:20px 22px 26px}
+.steps .no{display:block;font-family:var(--display);font-weight:600;font-size:.95rem;color:var(--green-deep);margin-bottom:6px}
+.steps h3{font-family:var(--display);font-weight:600;font-size:1.2rem;line-height:1.4;margin-bottom:8px}
+.steps p{font-size:.95rem;line-height:1.7;color:var(--mute)}
+@media (max-width:1000px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.steps{grid-template-columns:1fr}.steps li{flex-direction:row;align-items:stretch}.steps .ph{aspect-ratio:auto;width:38%;flex:none}.steps .tx{padding:16px 16px 18px}.steps h3{font-size:1.08rem}.steps p{font-size:.9rem;line-height:1.6}}
+
 @media (max-width:1000px){
   .menu{display:none}
   .burger{display:block}
@@ -353,6 +368,7 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
   <a class="brand" href="#top" aria-label="미래안전기술원 홈"><img src="assets/logo-lockup.png" alt="미래안전기술원 MIRAE SAFETY TECHNOLOGY INSTITUTE"></a>
   <nav class="menu" aria-label="주요 메뉴">
     <a href="#services">주요 업무</a>
+    <a href="#process">진행 과정</a>
     <a href="#field">현장 활동</a>
     <a href="#greeting">대표 인사말</a>
     <a href="#career">약력·자격</a>
@@ -369,6 +385,7 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 
 <nav class="mnav" id="mnav" aria-label="전체 메뉴">
   <a href="#services">주요 업무</a>
+  <a href="#process">진행 과정</a>
   <a href="#field">현장 활동</a>
   <a href="#greeting">대표 인사말</a>
   <a href="#career">약력·자격</a>
@@ -396,9 +413,9 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
       </div>
     </div>
     <div class="stage" id="stage">
-      <div class="slide on"><img src="assets/hero-1.jpg" style="object-position:80% 40%" alt="안전대를 착용한 근로자들에게 작업 전 안전 사항을 설명하는 미래안전기술원 대표"></div>
-      <div class="slide"><img src="assets/hero-site.jpg" style="object-position:62% 50%" alt="건설현장을 살피는 미래안전기술원 대표"></div>
+      <div class="slide on"><img src="assets/hero-site.jpg" style="object-position:62% 50%" alt="건설현장을 살피는 미래안전기술원 대표"></div>
       <div class="slide"><img src="assets/hero-3.jpg" style="object-position:42% 55%" alt="작업 전 근로자들에게 안전 사항을 전달하는 미래안전기술원 대표"></div>
+      <div class="slide"><img src="assets/hero-1.jpg" style="object-position:80% 40%" alt="안전대를 착용한 근로자들에게 작업 전 안전 사항을 설명하는 미래안전기술원 대표"></div>
       <div class="stage-ui">
         <span class="count" aria-hidden="true"><span id="cur">01</span> <small>/ 03</small></span>
         <div class="bars" id="bars">
@@ -443,6 +460,31 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
     </div>
   </section>
 
+  <section class="band process" id="process">
+    <header class="process-head">
+      <h2 class="rv">기술지도 진행 과정</h2>
+      <p class="band-note rv">현장을 직접 보고, 함께 고치고, 근로자에게 전하고, 기록으로 남깁니다.</p>
+    </header>
+    <ol class="steps">
+      <li class="rv" style="--d:0.00s">
+        <div class="ph"><img src="assets/step-1.jpg" width="1200" height="884" alt="굴착기 작업 구간에서 현장 관계자와 함께 자료를 확인하는 모습" loading="lazy"></div>
+        <div class="tx"><span class="no">01</span><h3>현장 점검</h3><p>작업 공정과 장비, 작업 구간의 위험요인을 현장에서 직접 확인합니다.</p></div>
+      </li>
+      <li class="rv" style="--d:0.08s">
+        <div class="ph"><img src="assets/step-2.jpg" width="1200" height="900" alt="현장 관계자와 지도 내용을 함께 검토하는 모습" loading="lazy"></div>
+        <div class="tx"><span class="no">02</span><h3>개선 지도</h3><p>확인한 위험요인의 개선 방법을 현장 관계자와 함께 협의합니다.</p></div>
+      </li>
+      <li class="rv" style="--d:0.16s">
+        <div class="ph"><img src="assets/step-3.jpg" width="1200" height="733" alt="작업 안전수칙 포스터를 전달하고 함께 확인하는 모습" loading="lazy"></div>
+        <div class="tx"><span class="no">03</span><h3>근로자 안전 전달</h3><p>작업 전 근로자에게 안전 수칙을 설명하고 포스터 등 자료를 제공합니다.</p></div>
+      </li>
+      <li class="rv" style="--d:0.24s">
+        <div class="ph"><img src="assets/g-desk.jpg" width="1320" height="1020" alt="기술지도 결과 서류를 검토하는 모습" loading="lazy"></div>
+        <div class="tx"><span class="no">04</span><h3>결과 보고</h3><p>지도 결과를 보고서로 정리해 전달하고, 다음 방문 때 개선 여부를 확인합니다.</p></div>
+      </li>
+    </ol>
+  </section>
+
   <section class="field" id="field">
     <header class="field-head">
       <h2 class="rv">현장 활동</h2>
@@ -452,14 +494,14 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
       </div>
     </header>
     <div class="rail" id="rail">
-      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/field-ceo.jpg" width="1200" height="900" alt="건설현장에서 서류를 살피며 기술지도를 하는 모습"></button><figcaption>현장 기술지도</figcaption></figure>
       <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-group.jpg" width="1400" height="1302" alt="작업 전 근로자들에게 기술지도 내용을 설명하는 모습" loading="lazy"></button><figcaption>작업 전 안전 교육</figcaption></figure>
+      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-day.jpg" width="1400" height="937" alt="공사 현장에서 근로자들과 안전 사항을 협의하는 모습" loading="lazy"></button><figcaption>현장 근로자와 안전 협의</figcaption></figure>
+      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/g-roof.jpg" width="1400" height="947" alt="옥상 현장에서 도면을 펼쳐 관계자들과 검토하는 모습" loading="lazy"></button><figcaption>옥상 작업 현장 지도</figcaption></figure>
       <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-brief.jpg" width="1400" height="933" alt="작업자들에게 서류를 보며 안전 사항을 설명하는 모습" loading="lazy"></button><figcaption>작업자 대상 안전 설명</figcaption></figure>
       <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-poster.jpg" width="1190" height="770" alt="야간 현장에서 안전 포스터와 점검 서류를 작업자와 함께 확인하는 모습" loading="lazy"></button><figcaption>안전 포스터·자료 제공</figcaption></figure>
-      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/g-roof.jpg" width="560" height="1080" alt="옥상 현장에서 자료를 펼쳐 설명하는 모습"></button><figcaption>옥상 작업 현장 지도</figcaption></figure>
-      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/g-desk.jpg" width="1320" height="1020" alt="현장 사무실에서 서류를 검토하는 모습"></button><figcaption>현장 서류 검토</figcaption></figure>
-      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/g-lux.jpg" width="1200" height="1120" alt="조도계로 작업장 밝기를 측정하는 모습"></button><figcaption>조도 측정</figcaption></figure>
-      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/g-sound.jpg" width="1200" height="1120" alt="소음계로 작업장 소음을 측정하는 모습"></button><figcaption>소음 측정</figcaption></figure>
+      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/field-ceo.jpg" width="1200" height="900" alt="건설현장에서 서류를 살피며 기술지도를 하는 모습" loading="lazy"></button><figcaption>현장 기술지도</figcaption></figure>
+      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/g-lux.jpg" width="1200" height="1120" alt="조도계로 작업장 밝기를 측정하는 모습" loading="lazy"></button><figcaption>조도 측정</figcaption></figure>
+      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/g-sound.jpg" width="1200" height="1120" alt="소음계로 작업장 소음을 측정하는 모습" loading="lazy"></button><figcaption>소음 측정</figcaption></figure>
     </div>
     <div class="rail-line" aria-hidden="true"><i id="railbar"></i></div>
   </section>
