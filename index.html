@@ -63,7 +63,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* ── 시작 화면 ── */
 .intro{position:fixed;inset:0;z-index:200;display:grid;place-items:center;background:var(--ink);pointer-events:none;animation:introOut .8s var(--ease) 1.25s forwards}
 .intro .tile{padding:22px 26px;opacity:0;transform:scale(.86);animation:introMark .9s var(--ease) .1s forwards}
-.intro img{width:104px;filter:drop-shadow(0 0 18px rgba(155,224,168,.18))}
+.intro img{width:104px}
 .intro::after{content:"";position:absolute;left:50%;top:calc(50% + 78px);width:120px;height:2px;margin-left:-60px;background:linear-gradient(90deg,var(--blue) 50%,var(--green) 50%);transform:scaleX(0);transform-origin:left;animation:introLine .9s var(--ease) .35s forwards}
 @keyframes introMark{to{opacity:1;transform:none}}
 @keyframes introLine{to{transform:scaleX(1)}}
@@ -140,10 +140,8 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 @keyframes drift{to{transform:translate(70px,50px) scale(1.15)}}
 .chip{align-self:flex-start;background:#fff;padding:9px 14px;border-radius:2px;margin-bottom:clamp(26px,3.4vw,44px)}
 .chip img{height:36px;width:auto}
-.desig{display:none;align-items:center;justify-content:center;gap:9px;height:42px;padding:0 var(--gutter);background:#fff;border-bottom:1px solid var(--rule);font-size:.9rem;color:var(--ink);letter-spacing:-.01em;white-space:nowrap}
-.desig svg{width:20px;height:20px;flex:none}
-.desig b{font-weight:700}
-.desig span{color:var(--mute);font-weight:500}
+.desig{display:none;padding:12px var(--gutter) 0;background:#fff}
+.desig img{height:24px;width:auto;display:block}
 .quote-wrap{align-self:flex-start;max-width:100%}
 .q{display:block;width:clamp(30px,3vw,46px);height:auto;color:var(--green)}
 .q-open{margin-bottom:clamp(12px,1.4vw,20px)}
@@ -405,6 +403,7 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 <div class="intro" aria-hidden="true"><div class="tile"><img src="assets/logo-mark.svg" alt=""></div></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
+<div class="desig"><img src="assets/badge-moel.png" alt="고용노동부지정 재해예방전문지도기관"></div>
 <header class="top" id="topbar">
   <a class="brand" href="#top" aria-label="미래안전기술원 홈"><img src="assets/logo-lockup.png" alt="미래안전기술원 MIRAE SAFETY TECHNOLOGY INSTITUTE"></a>
   <nav class="menu" aria-label="주요 메뉴">
@@ -436,7 +435,6 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 </nav>
 
 <main id="top">
-  <div class="desig" aria-label="고용노동부 지정 재해예방전문지도기관"><svg viewBox="-10 -10 20 20" aria-hidden="true"><circle r="10" fill="#003478"/><path fill="#c60c30" d="M-10 0A10 10 0 0 1 10 0A5 5 0 0 1 0 0A5 5 0 0 0 -10 0Z"/></svg><b>고용노동부 지정</b><span>재해예방전문지도기관</span></div>
   <section class="hero">
     <div class="hero-copy">
       <div class="glow"></div>
@@ -545,7 +543,7 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
       <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-lift.jpg" width="1400" height="805" alt="철골 지붕 아래 고소작업대 작업을 확인하는 모습" loading="lazy"></button><figcaption>고소작업대 작업 확인</figcaption></figure>
       <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-line.jpg" width="1400" height="851" alt="옥상 작업 구간의 구명줄 설치 상태를 확인하는 모습" loading="lazy"></button><figcaption>구명줄 설치 상태 확인</figcaption></figure>
       <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-rope.jpg" width="1400" height="738" alt="버니어캘리퍼스로 구명줄 직경을 측정하는 모습" loading="lazy"></button><figcaption>구명줄 규격 측정</figcaption></figure>
-      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-elec.jpg" width="1400" height="826" alt="콘센트에 누전 검전기를 꽂아 점검하는 모습" loading="lazy"></button><figcaption>전기 누전 점검</figcaption></figure>
+      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-elec.jpg" width="1400" height="826" alt="콘센트에 접지 테스터를 꽂아 접지 상태를 점검하는 모습" loading="lazy"></button><figcaption>접지 상태 점검</figcaption></figure>
       <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-gas.jpg" width="1080" height="940" alt="가스 측정기로 산소·유해가스 농도를 측정한 화면" loading="lazy"></button><figcaption>산소·유해가스 측정</figcaption></figure>
       <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/g-lux.jpg" width="1200" height="1120" alt="조도계로 작업장 밝기를 측정하는 모습" loading="lazy"></button><figcaption>조도 측정</figcaption></figure>
       <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/g-sound.jpg" width="1200" height="1120" alt="소음계로 작업장 소음을 측정하는 모습" loading="lazy"></button><figcaption>소음 측정</figcaption></figure>
