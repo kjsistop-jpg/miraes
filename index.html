@@ -140,8 +140,11 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 @keyframes drift{to{transform:translate(70px,50px) scale(1.15)}}
 .chip{align-self:flex-start;background:#fff;padding:9px 14px;border-radius:2px;margin-bottom:clamp(26px,3.4vw,44px)}
 .chip img{height:36px;width:auto}
-.desig{display:none;padding:12px var(--gutter) 0;background:#fff}
-.desig img{height:24px;width:auto;display:block}
+.desig{display:none;position:relative;z-index:101;align-items:center;gap:6px;padding:9px var(--gutter) 0;background:#fff;font-size:.8rem;line-height:1;letter-spacing:-.02em;color:var(--ink);white-space:nowrap}
+.desig img{width:17px;height:17px;display:block;flex:none}
+.desig b{font-weight:700}
+.desig span{font-weight:500}
+.desig + .top{margin-top:-6px}
 .quote-wrap{align-self:flex-start;max-width:100%}
 .q{display:block;width:clamp(30px,3vw,46px);height:auto;color:var(--green)}
 .q-open{margin-bottom:clamp(12px,1.4vw,20px)}
@@ -403,7 +406,7 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 <div class="intro" aria-hidden="true"><div class="tile"><img src="assets/logo-mark.svg" alt=""></div></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
-<div class="desig"><img src="assets/badge-moel.png" alt="고용노동부지정 재해예방전문지도기관"></div>
+<div class="desig"><img src="assets/moel-emblem.png" alt=""><span><b>고용노동부지정</b> 재해예방전문지도기관</span></div>
 <header class="top" id="topbar">
   <a class="brand" href="#top" aria-label="미래안전기술원 홈"><img src="assets/logo-lockup.png" alt="미래안전기술원 MIRAE SAFETY TECHNOLOGY INSTITUTE"></a>
   <nav class="menu" aria-label="주요 메뉴">
