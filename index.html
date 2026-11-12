@@ -304,6 +304,24 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
 @media (max-width:1000px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.steps{grid-template-columns:1fr}.steps li{flex-direction:row;align-items:stretch}.steps .ph{aspect-ratio:auto;width:38%;flex:none}.steps .tx{padding:16px 16px 18px}.steps h3{font-size:1.08rem}.steps p{font-size:.9rem;line-height:1.6}}
 
+/* 대외 활동·위촉 */
+.trust-head{max-width:1200px;margin:0 auto clamp(36px,5vw,64px)}
+.acts{list-style:none;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px)}
+.acts .frame{display:block;width:100%;aspect-ratio:4/3;overflow:hidden;background:var(--paper);margin-bottom:20px}
+.acts .frame img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.acts li:hover .frame img{transform:scale(1.04)}
+.acts h3{font-family:var(--display);font-weight:600;font-size:1.25rem;line-height:1.4;margin-bottom:8px;padding-left:16px;border-left:3px solid var(--green)}
+.acts p{color:var(--mute);font-size:.98rem;line-height:1.7}
+.docs{max-width:1200px;margin:clamp(56px,7vw,96px) auto 0;padding-top:clamp(36px,5vw,56px);border-top:1px solid var(--rule);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(16px,2.4vw,32px)}
+.docs .frame{display:block;width:100%;aspect-ratio:3/4;overflow:hidden;background:#fff;box-shadow:0 18px 40px -28px rgba(11,34,54,.6);border:1px solid var(--rule);transition:transform .5s var(--ease),box-shadow .5s}
+.docs .frame:hover{transform:translateY(-4px);box-shadow:0 26px 50px -30px rgba(11,34,54,.7)}
+.docs img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.docs figcaption{margin-top:16px;line-height:1.5}
+.docs figcaption b{display:block;font-weight:700;font-size:1rem}
+.docs figcaption span{font-size:.88rem;color:var(--mute)}
+@media (max-width:1000px){.acts{grid-template-columns:1fr 1fr}.acts li:last-child{grid-column:1/-1}.acts li:last-child .frame{aspect-ratio:16/9}.docs{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.acts{grid-template-columns:1fr}.acts li:last-child .frame{aspect-ratio:4/3}.docs{gap:18px 14px}.docs figcaption b{font-size:.92rem}.docs figcaption span{font-size:.8rem}}
+
 @media (max-width:1000px){
   .menu{display:none}
   .burger{display:block}
@@ -370,6 +388,7 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
     <a href="#services">주요 업무</a>
     <a href="#process">진행 과정</a>
     <a href="#field">현장 활동</a>
+    <a href="#trust">대외 활동</a>
     <a href="#greeting">대표 인사말</a>
     <a href="#career">약력·자격</a>
     <a href="#contact">문의</a>
@@ -387,6 +406,7 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
   <a href="#services">주요 업무</a>
   <a href="#process">진행 과정</a>
   <a href="#field">현장 활동</a>
+  <a href="#trust">대외 활동</a>
   <a href="#greeting">대표 인사말</a>
   <a href="#career">약력·자격</a>
   <a href="#contact">문의</a>
@@ -467,15 +487,15 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
     </header>
     <ol class="steps">
       <li class="rv" style="--d:0.00s">
-        <div class="ph"><img src="assets/step-1.jpg" width="1200" height="884" alt="굴착기 작업 구간에서 현장 관계자와 함께 자료를 확인하는 모습" loading="lazy"></div>
+        <div class="ph"><img src="assets/step-1.jpg" width="1200" height="690" alt="공사 구간을 따라 현장을 점검하는 모습" loading="lazy"></div>
         <div class="tx"><span class="no">01</span><h3>현장 점검</h3><p>작업 공정과 장비, 작업 구간의 위험요인을 현장에서 직접 확인합니다.</p></div>
       </li>
       <li class="rv" style="--d:0.08s">
-        <div class="ph"><img src="assets/step-2.jpg" width="1200" height="900" alt="현장 관계자와 지도 내용을 함께 검토하는 모습" loading="lazy"></div>
+        <div class="ph"><img src="assets/step-2.jpg" width="1200" height="722" alt="현장 관계자와 지도 내용을 함께 검토하는 모습" loading="lazy"></div>
         <div class="tx"><span class="no">02</span><h3>개선 지도</h3><p>확인한 위험요인의 개선 방법을 현장 관계자와 함께 협의합니다.</p></div>
       </li>
       <li class="rv" style="--d:0.16s">
-        <div class="ph"><img src="assets/step-3.jpg" width="1200" height="733" alt="작업 안전수칙 포스터를 전달하고 함께 확인하는 모습" loading="lazy"></div>
+        <div class="ph"><img src="assets/step-3.jpg" width="1200" height="730" alt="옥상 작업자에게 안전 수칙 자료를 설명하는 모습" loading="lazy"></div>
         <div class="tx"><span class="no">03</span><h3>근로자 안전 전달</h3><p>작업 전 근로자에게 안전 수칙을 설명하고 포스터 등 자료를 제공합니다.</p></div>
       </li>
       <li class="rv" style="--d:0.24s">
@@ -495,15 +515,57 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
     </header>
     <div class="rail" id="rail">
       <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-group.jpg" width="1400" height="1302" alt="작업 전 근로자들에게 기술지도 내용을 설명하는 모습" loading="lazy"></button><figcaption>작업 전 안전 교육</figcaption></figure>
-      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-day.jpg" width="1400" height="937" alt="공사 현장에서 근로자들과 안전 사항을 협의하는 모습" loading="lazy"></button><figcaption>현장 근로자와 안전 협의</figcaption></figure>
-      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/g-roof.jpg" width="1400" height="947" alt="옥상 현장에서 도면을 펼쳐 관계자들과 검토하는 모습" loading="lazy"></button><figcaption>옥상 작업 현장 지도</figcaption></figure>
-      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-brief.jpg" width="1400" height="933" alt="작업자들에게 서류를 보며 안전 사항을 설명하는 모습" loading="lazy"></button><figcaption>작업자 대상 안전 설명</figcaption></figure>
-      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-poster.jpg" width="1190" height="770" alt="야간 현장에서 안전 포스터와 점검 서류를 작업자와 함께 확인하는 모습" loading="lazy"></button><figcaption>안전 포스터·자료 제공</figcaption></figure>
       <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/field-ceo.jpg" width="1200" height="900" alt="건설현장에서 서류를 살피며 기술지도를 하는 모습" loading="lazy"></button><figcaption>현장 기술지도</figcaption></figure>
+      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-brief.jpg" width="1400" height="933" alt="작업자들에게 서류를 보며 안전 사항을 설명하는 모습" loading="lazy"></button><figcaption>작업자 대상 안전 설명</figcaption></figure>
+      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-poster.jpg" width="1190" height="770" alt="안전 포스터와 점검 서류를 작업자와 함께 확인하는 모습" loading="lazy"></button><figcaption>안전 포스터·자료 제공</figcaption></figure>
+      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-lift.jpg" width="1400" height="805" alt="철골 지붕 아래 고소작업대 작업을 확인하는 모습" loading="lazy"></button><figcaption>고소작업대 작업 확인</figcaption></figure>
+      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-line.jpg" width="1400" height="851" alt="옥상 작업 구간의 구명줄 설치 상태를 확인하는 모습" loading="lazy"></button><figcaption>구명줄 설치 상태 확인</figcaption></figure>
+      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-rope.jpg" width="1400" height="738" alt="버니어캘리퍼스로 구명줄 직경을 측정하는 모습" loading="lazy"></button><figcaption>구명줄 규격 측정</figcaption></figure>
+      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-elec.jpg" width="1400" height="826" alt="콘센트에 누전 검전기를 꽂아 점검하는 모습" loading="lazy"></button><figcaption>전기 누전 점검</figcaption></figure>
+      <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/f-gas.jpg" width="1080" height="940" alt="가스 측정기로 산소·유해가스 농도를 측정한 화면" loading="lazy"></button><figcaption>산소·유해가스 측정</figcaption></figure>
       <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/g-lux.jpg" width="1200" height="1120" alt="조도계로 작업장 밝기를 측정하는 모습" loading="lazy"></button><figcaption>조도 측정</figcaption></figure>
       <figure><button class="frame" aria-label="사진 크게 보기"><img src="assets/g-sound.jpg" width="1200" height="1120" alt="소음계로 작업장 소음을 측정하는 모습" loading="lazy"></button><figcaption>소음 측정</figcaption></figure>
     </div>
     <div class="rail-line" aria-hidden="true"><i id="railbar"></i></div>
+  </section>
+
+  <section class="band trust" id="trust">
+    <header class="trust-head">
+      <h2 class="rv">공공기관이 맡기는<br>전문성</h2>
+      <p class="band-note rv">현장 지도뿐 아니라 공공 심의와 점검, 법정 서류 작성까지 직접 수행합니다.</p>
+    </header>
+    <ul class="acts">
+      <li class="rv">
+        <button class="frame" aria-label="사진 크게 보기"><img src="assets/act-review.jpg" width="1600" height="766" alt="기술심의위원회 회의석에 놓인 안전관리 분야 위원 명패와 심의 자료" loading="lazy"></button>
+        <h3>전북도청 기술심의</h3><p>안전관리 분야 위원으로 공공 건설공사의 설계와 안전관리 계획을 심의합니다.</p>
+      </li>
+      <li class="rv">
+        <button class="frame" aria-label="사진 크게 보기"><img src="assets/act-inspect.jpg" width="1600" height="1049" alt="어린이 놀이시설의 미끄럼틀 상태를 점검하는 모습" loading="lazy"></button>
+        <h3>지자체 안전점검 참여</h3><p>지자체가 관리하는 공공시설의 안전점검에 전문가로 참여합니다.</p>
+      </li>
+      <li class="rv">
+        <button class="frame" aria-label="사진 크게 보기"><img src="assets/act-ledger.jpg" width="1600" height="1310" alt="작성을 마친 기본안전보건대장 바인더" loading="lazy"></button>
+        <h3>안전보건대장 작성</h3><p>발주자를 대신해 기본·설계·공사 안전보건대장을 작성하고 이행을 확인합니다.</p>
+      </li>
+    </ul>
+    <div class="docs">
+      <figure class="rv">
+        <button class="frame" aria-label="산업안전지도사 등록 크게 보기"><img src="assets/cert-reg.jpg" width="900" height="951" alt="산업안전지도사 등록증" loading="lazy"></button>
+        <figcaption><b>산업안전지도사 등록</b><span>건설안전 업무영역</span></figcaption>
+      </figure>
+      <figure class="rv">
+        <button class="frame" aria-label="LH 안전보건 전문가 크게 보기"><img src="assets/cert-lh1.jpg" width="720" height="950" alt="LH 안전보건 전문가 위촉장" loading="lazy"></button>
+        <figcaption><b>LH 안전보건 전문가</b><span>한국토지주택공사 위촉</span></figcaption>
+      </figure>
+      <figure class="rv">
+        <button class="frame" aria-label="LH 건설안전 자문위원 크게 보기"><img src="assets/cert-lh2.jpg" width="900" height="1253" alt="LH 건설안전 자문단 자문위원 위촉장" loading="lazy"></button>
+        <figcaption><b>LH 건설안전 자문위원</b><span>한국토지주택공사 위촉</span></figcaption>
+      </figure>
+      <figure class="rv">
+        <button class="frame" aria-label="추락예방 안전지킴이 크게 보기"><img src="assets/cert-kosha.jpg" width="900" height="1272" alt="지붕·철골작업 추락예방 안전지킴이 위촉장" loading="lazy"></button>
+        <figcaption><b>추락예방 안전지킴이</b><span>한국산업안전보건공단 위촉</span></figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="band on-paper" id="greeting">
@@ -688,12 +750,13 @@ h2::after{content:"";display:block;width:44px;height:3px;margin-top:22px;backgro
   /* 사진 크게 보기 */
   var lb=$('#lb'),lbImg=$('#lbImg'),lbCap=$('#lbCap'),lbClose=$('#lbClose'),last=null;
   function openLb(btn){
-    var im=$('img',btn),cap=$('figcaption',btn.parentNode);
+    var im=$('img',btn),cap=$('figcaption',btn.parentNode)||$('h3',btn.parentNode);
     lbImg.src=im.currentSrc||im.src;lbImg.alt=im.alt;lbCap.textContent=cap?cap.textContent:'';
     last=btn;lb.classList.add('open');doc.body.classList.add('lock');lbClose.focus();
   }
   function closeLb(){lb.classList.remove('open');doc.body.classList.remove('lock');if(last)last.focus()}
   $$('.rail .frame').forEach(function(b){b.addEventListener('click',function(){if(moved>6)return;openLb(b)})});
+  $$('.acts .frame,.docs .frame').forEach(function(b){b.addEventListener('click',function(){openLb(b)})});
   lb.addEventListener('click',function(e){if(e.target!==lbImg)closeLb()});
 
   /* 휴대폰 메뉴 */
